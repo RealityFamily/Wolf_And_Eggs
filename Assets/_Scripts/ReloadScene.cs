@@ -23,8 +23,7 @@ public class ReloadScene : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            scoreCount.GetComponent<ScoreCounter>().score.text = "0";
-            eggSpown.GetComponent<EggSpown>().isPaused = true;
+            //eggSpown.GetComponent<EggSpown>().isPaused = true;
         }
     }
 }

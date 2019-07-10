@@ -9,61 +9,21 @@ public class EggDestroy : MonoBehaviour
 {
     private int counter;
     private int index = 0;
-    [SerializeField]
-    private GameObject heart;
-    [SerializeField]
-    private GameObject heart2;
-    [SerializeField]
-    private GameObject heart3;
-    public Collider terrain;
-    private GameObject egg;
-    public List<GameObject> helths;
+    private EggSpown gamePipeline;
 
-    void Start()
+    private void Start()
     {
-        helths = new List<GameObject>
-        {
-            heart,
-            heart2,
-            heart3
-        };
-        
+        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>();
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "egg")
         {
-            egg = GameObject.FindGameObjectWithTag("egg");
-            AudioSource audio = egg.GetComponent<AudioSource>();
+            AudioSource audio = collision.gameObject.GetComponent<AudioSource>();
             audio.Play();
             Destroy(collision.gameObject, 0.3f);
-
-            counter++;
-            if (counter == 3)
-            {
-                if (helths[index].GetComponent<MeshRenderer>().enabled == false)
-                {
-                    AudioSource audio1 =  helths[index + 1].GetComponent<AudioSource>();
-                    audio1.Play();
-                    helths[index + 1].GetComponent<MeshRenderer>().enabled = false;
-                }
-                else
-                {
-                    helths[index].GetComponent<AudioSource>().Play();
-                    helths[index].GetComponent<MeshRenderer>().enabled = false;
-                }
-                if (index < helths.Count)
-                {
-                    index++;
-                }
-
-                counter = 0;
-            }
-            if (index == helths.Count)
-            {
-                FindObjectOfType<EggSpown>().isPaused = true;
-            }
+            gamePipeline.ChangeHealth(-1);
         }
 
         if (collision.gameObject.tag == "Bomb")

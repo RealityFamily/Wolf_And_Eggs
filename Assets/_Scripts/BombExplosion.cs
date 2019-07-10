@@ -15,18 +15,18 @@ public class BombExplosion : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bomb")
         {
-            AudioSource audio = eggDestroy
-                .GetComponent<EggDestroy>()
-                .helths
-                .FirstOrDefault(s => s.GetComponent<MeshRenderer>().enabled == true).GetComponent<AudioSource>();
-            audio.Play();
+            //AudioSource audio = eggDestroy
+            //    .GetComponent<EggDestroy>()
+            //    .helths
+            //    .FirstOrDefault(s => s.GetComponent<MeshRenderer>().enabled == true).GetComponent<AudioSource>();
+            //audio.Play();
 
-            eggDestroy
-                .GetComponent<EggDestroy>()
-                .helths
-                .FirstOrDefault(s => s.GetComponent<MeshRenderer>().enabled == true)
-                .GetComponent<MeshRenderer>()
-                .enabled = false;
+            //eggDestroy
+            //    .GetComponent<EggDestroy>()
+            //    .helths
+            //    .FirstOrDefault(s => s.GetComponent<MeshRenderer>().enabled == true)
+            //    .GetComponent<MeshRenderer>()
+            //    .enabled = false;
 
             collision.gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
             //here will be particle

@@ -6,6 +6,15 @@ TagManager:
   tags:
   - egg
   - Bomb
+  - Left Hand
+  - Right Hand
+  - Game Pipeline
+  - Life Watch
+  - Score Watch
+  - Terrarian
+  - player
+  - Countdown
+  - Zayac
   layers:
   - Default
   - TransparentFX

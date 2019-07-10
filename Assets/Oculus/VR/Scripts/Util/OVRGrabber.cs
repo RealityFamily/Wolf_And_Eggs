@@ -89,8 +89,8 @@ public class OVRGrabber : MonoBehaviour
 
     protected virtual void Awake()
     {
-        m_anchorOffsetPosition = transform.localPosition;
-        m_anchorOffsetRotation = transform.localRotation;
+        m_anchorOffsetPosition = transform.position;
+        m_anchorOffsetRotation = transform.rotation;
 
 		// If we are being used with an OVRCameraRig, let it drive input updates, which may come from Update or FixedUpdate.
 
@@ -137,10 +137,10 @@ public class OVRGrabber : MonoBehaviour
     {
         Vector3 handPos = OVRInput.GetLocalControllerPosition(m_controller);
         Quaternion handRot = OVRInput.GetLocalControllerRotation(m_controller);
-        Vector3 destPos = m_parentTransform.TransformPoint(m_anchorOffsetPosition + handPos);
-        Quaternion destRot = m_parentTransform.rotation * handRot * m_anchorOffsetRotation;
-        GetComponent<Rigidbody>().MovePosition(destPos);
-        GetComponent<Rigidbody>().MoveRotation(destRot);
+        Vector3 destPos = /*m_parentTransform.TransformPoint(m_anchorOffsetPosition + handPos)*/ transform.position;
+        Quaternion destRot =/* m_parentTransform.rotation * handRot * m_anchorOffsetRotation*/ transform.rotation;
+        //GetComponent<Rigidbody>().MovePosition(destPos);
+        //GetComponent<Rigidbody>().MoveRotation(destRot);
 
         if (!m_parentHeldObject)
         {
