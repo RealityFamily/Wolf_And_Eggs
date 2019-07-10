@@ -21,11 +21,17 @@ public class EggSpown : MonoBehaviour
     Text ScoreWatch;
 
     [SerializeField]
+    AudioClip HeartAdd;
+    [SerializeField]
+    AudioClip HeartCrush;
+
+    [SerializeField]
     int Round = 1;
     [SerializeField]
     int score = 0;
     [SerializeField]
     int Health = 5;
+    bool comboFail = false;
 
     GameObject player;
     GameObject Leap;
@@ -44,9 +50,11 @@ public class EggSpown : MonoBehaviour
     bool ready = false;
     //аудиоклипы для обучения
     [SerializeField]
-    List<AudioClip> TreaningWithControllers;
+    List<AudioClip> TreaningDialog;
     [SerializeField]
-    List<AudioClip> TreaningWithLeap;
+    List<AudioClip> TouchPart;
+    [SerializeField]
+    List<AudioClip> LeapPart;
 
     void Start()
     {
@@ -55,19 +63,23 @@ public class EggSpown : MonoBehaviour
 
     IEnumerator GameTimeLine ()
     {
-        // постанока человека перед выбором
+        /***************************************************************/
+        /******** Постоновка человека перед выбором чем играть *********/
+        /***************************************************************/
         PutToChoose();
 
-        // ожидание выбора игрока, чем играть он хочет
+        /***************************************************************/
+        /********* ожидание выбора игрока, чем играть он хочет *********/
+        /***************************************************************/
         float time = Time.time;
         yield return new WaitUntil(() => difficulty != Difficulty.none || Time.time - time >= 10);
         if (difficulty == Difficulty.none)
         {
             Countdown.SetActive(true);
             Text intCountdown = GameObject.FindGameObjectWithTag("Countdown").transform.GetChild(1).GetComponent<Text>();
-            for (int i = 5; i > -1; i--)
+            for (int t = 5; t > -1; t--)
             {
-                intCountdown.text = i.ToString();
+                intCountdown.text = t.ToString();
                 yield return new WaitForSeconds(1);
             }
             if (difficulty == Difficulty.none)
@@ -76,50 +88,106 @@ public class EggSpown : MonoBehaviour
             }
         }
 
-        print("init");
-        // инициализация всех необходимых аппаратных средств внутри игры
+        /*****************************************************************/
+        /* инициализация всех необходимых аппаратных средств внутри игры */
+        /*****************************************************************/
         Initialize();
 
-        print("learn");
-        // начало обучения игрока
-        zayac = GameObject.FindGameObjectWithTag("Zayac");
-
+        /***************************************************************/
+        /****************** начало обучения игрока *********************/
+        /***************************************************************/
+        int i = 0;
+        // приветствие.
+        i = ZayacTalk(i, Difficulty.none);
+        // объяснение выбранного режима.
+        i = ZayacTalk(i, Difficulty.none);
         if (difficulty == Difficulty.easy)
         {
-            int i = 0;
-            // приветствие. объяснение выбранного режима. проба сжатия кулака на левой руке с контроллером.
-            i = ZayacTalk(i);
+            int j = 0;
+            // окончание фразы о выбранном режиме
+            j = ZayacTalk(j, difficulty);
+            //проба сжатия кулака на левой руке с контроллером.
+            j = ZayacTalk(j, difficulty);
             while (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.75f && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.75f) { yield return new WaitForSeconds(0.01f); }
-            print("right");
             // теперь правой рукой с контроллером
-            i = ZayacTalk(i);
+            j = ZayacTalk(j, difficulty);
             while (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.75f && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) < 0.75f) { yield return new WaitForSeconds(0.01f); }
             // теперь сжатие обоих рук без контроллеров, чтобы игрок привык к анимации
-            i = ZayacTalk(i);
-            VR.GetComponent<OvrAvatar>().StartWithControllers = false;
+            j = ZayacTalk(j, difficulty);
             VR.transform.GetChild(0).gameObject.SetActive(false);
             VR.transform.GetChild(1).gameObject.SetActive(true);
             while (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.75f && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) < 0.75f && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.75f && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) < 0.75f) { yield return new WaitForSeconds(0.01f); }
-
-
         }
         else if (difficulty == Difficulty.hard)
         {
-
+            int j = 0;
+            // окончание фразы о выбранном режиме
+            j = ZayacTalk(j, difficulty);
+            //проба сжатия руками кулака.
+            j = ZayacTalk(j, difficulty);
+            while (true) { yield return new WaitForSeconds(0.01f); }
         }
+        // объяснение смысла игры.
+        i = ZayacTalk(i, Difficulty.none);
+        // запуск яйцо по центру и просьба бросить его в корзину.
+        i = ZayacTalk(i, Difficulty.none);
+        int t_score = score;
+        while (t_score == score)
+        {
+            Instantiate(egg, spawnPoint2.transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+            yield return new WaitForSeconds(5);
+        }
+        // объяснение часов со счетом
+        i = ZayacTalk(i, Difficulty.none);
+        // а теперь запускаем такое же яйцо, которое не возможно взять
+        i = ZayacTalk(i, Difficulty.none);
+        GameObject t_egg = egg;
+        t_egg.GetComponent<OVRGrabbable>().enabled = false;
+        Instantiate(t_egg, spawnPoint2.transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+        yield return new WaitForSeconds(5);
+        // объясние часов с жизнью
+        i = ZayacTalk(i, Difficulty.none);
+        // комбо из 10 яиц => жизнь++
+        i = ZayacTalk(i, Difficulty.none);
+        // договариваемся о возврящении потеренной жизни
+        i = ZayacTalk(i, Difficulty.none);
+        ChangeHealth(1);
+        // ввод игрока в игру по показу знака "класс"
+        i = ZayacTalk(i, Difficulty.none);
+        if (difficulty == Difficulty.easy)
+        {
+            time = Time.time;
+            yield return new WaitUntil(() => (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.75f && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) >= 0.75f && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) >= 0.75f && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) >= 0.75f) || Time.time - time >= 5);
+        } else if (difficulty == Difficulty.hard) {
+            time = Time.time;
+            yield return new WaitUntil(() => (true && true) || Time.time - time >= 5);
+        }
+        // уход зайца и начало игры
+        i = ZayacTalk(i, Difficulty.none);
+        yield return new WaitForSeconds(TreaningDialog[i-1].length);
 
-        // инициализация часов игрока
-        SetWatch();
-
-        // сама игра
+        /***************************************************************/
+        /************************ сама игра ****************************/
+        /***************************************************************/
         while (Health > 0 && Round < 10)
         {
             Spawn();
-            if (score >= 100) { Round += 1; score -= 100; }
+            if (score >= 100) // каждые 10 яиц => ускорение времени их появления, или по-другому "новый уровень"
+            {
+                Round += 1;
+                score -= 100;
+                if (!comboFail) // если игрок не уронил ни одного яйца за раунд или другими словами собрал комбо из 10 яиц, то его жизнь++
+                {
+                    ChangeHealth(1);
+                }
+                comboFail = false;
+            }
             yield return new WaitForSeconds(GiveTime());
         }
 
-        // демонстрация счета (пока под вопросом) и кнопка перезапуска игры
+        /********************************************************************/
+        /* демонстрация счета (пока под вопросом) и кнопка перезапуска игры */
+        /********************************************************************/
         ShowScore();
 
         //yield return null; //заглушка для проверки
@@ -142,7 +210,11 @@ public class EggSpown : MonoBehaviour
         RH = GameObject.FindGameObjectWithTag("Right Hand").GetComponent<BoxCollider>();
 
         HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
+        HealthWatch.text = Health.ToString();
         ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
+        ScoreWatch.text = score.ToString();
+
+        zayac = GameObject.FindGameObjectWithTag("Zayac");
     }
 
     private void PutToChoose()
@@ -159,50 +231,57 @@ public class EggSpown : MonoBehaviour
         player.transform.rotation = chooseDifficultyPlace.rotation;
     }
 
-    private void SetWatch()
-    {
-        HealthWatch.text = Health.ToString();
-        ScoreWatch.text = score.ToString();
-    }
-
     private void ShowScore()
     {
         LH.isTrigger = false;
         RH.isTrigger = false;
     }
 
-    private int ZayacTalk(int i) // скрипт, чтобы не писать каждый отдельный взятый раз болтовню зайца. В массивах аудиозаписи должны лежать попорядку
+    private int ZayacTalk(int i, Difficulty GameDifficulty) // скрипт, чтобы не писать каждый отдельный взятый раз болтовню зайца. В массивах аудиозаписи должны лежать попорядку
     {
-        //if (difficulty == Difficulty.easy) { zayac.GetComponent<AudioSource>().PlayOneShot(TreaningWithControllers[i]); }
-        //else if (difficulty == Difficulty.hard) { zayac.GetComponent<AudioSource>().PlayOneShot(TreaningWithLeap[i]); }
+        if (difficulty == Difficulty.easy) { zayac.GetComponent<AudioSource>().PlayOneShot(TouchPart[i]); }
+        else if (difficulty == Difficulty.hard) { zayac.GetComponent<AudioSource>().PlayOneShot(LeapPart[i]); }
+        else { zayac.GetComponent<AudioSource>().PlayOneShot(TreaningDialog[i]); }
 
         return i++;
     }
 
     private void Spawn()
     {
-        GameObject[] spawn_things = new GameObject[] { egg, bomb, egg };
-        GameObject[] spawn_place = new GameObject[] { spawnPoint1, spawnPoint2, spawnPoint3 };
+        GameObject[] spawn_things = new GameObject[] {egg, bomb, egg};
+        GameObject[] spawn_place = new GameObject[] {spawnPoint1, spawnPoint2, spawnPoint3};
 
-        Instantiate(spawn_things[Random.Range(0,2)], spawn_place[Random.Range(0, 3)].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+        if (Round < 2) // первые два раунда падают только яйца с ускорением времени
+        {
+            Instantiate(egg, spawn_place[Random.Range(0, 3)].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+        }
+        else // а позже уже начинают появляться бомбы
+        {
+            Instantiate(spawn_things[Random.Range(0, 2)], spawn_place[Random.Range(0, 3)].transform.position,Quaternion.Euler(new Vector3(-90, 0, 0)));
+        }
     }
 
     private float GiveTime()
     {
-        float t = (10 - Round) * 0.5f;
+        float t = (10 - Round) * 0.5f; // расчет времени проиходит по формуле, зависящей от времени
         return t;
     }
 
     public void AddScore (int score_to_add)
     {
         score += score_to_add;
-        ScoreWatch.text = (score + Round * 100).ToString();
+        ScoreWatch.text = (score + Round * 100).ToString(); // счет идет за каждый раунд свой, + 100 за каждый раунд
     }
 
     public void ChangeHealth(int delta)
     {
         if (delta == 0) { Health = 0; }
-        else { Health += delta; }
+        else
+        {
+            Health += delta;
+            HealthWatch.gameObject.GetComponent<AudioSource>().PlayOneShot( delta > 0 ? HeartAdd : HeartCrush);
+            if (delta < 0) { comboFail = true; }
+        }
         HealthWatch.text = Health.ToString();
     }
 }
