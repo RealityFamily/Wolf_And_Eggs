@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Text.RegularExpressions;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public GameObject spown;
     public GameObject coin;
-    public Text score;
-    private int count = 10;
+    public AudioClip clip;
+
+    private EggSpown gamePipeline;
     List<GameObject> gameObjects = new List<GameObject>();
     private float yDeg;
     private Quaternion fromRotation;
     private Quaternion toRotation;
     private float lerpSpeed = 100;
+
+    private void Start()
+    {
+        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>();
+    }
 
     private void Update()
     {
@@ -35,17 +37,27 @@ public class ScoreCounter : MonoBehaviour
     {
         if (other.gameObject.tag == "egg")
         {
-            score.text = count.ToString();
-            Instantiate(coin, spown.transform.position, Quaternion.Euler(0f, 90f, 0f)).GetComponent<Rigidbody>().AddForce(new Vector3(0f, 2f, 0f), ForceMode.Impulse);
+            GameObject created_coin = Instantiate(coin, transform.position, Quaternion.Euler(0f, 90f, 0f));
+            created_coin.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 2f, 0f), ForceMode.Impulse);
+            Destroy(created_coin, 3);
             gameObjects.Add(other.gameObject);
+            gamePipeline.AddScore(10);
         }
-        count += 10;
-        if (gameObjects.Count == 30)
+
+        if (other.gameObject.tag == "Bomb")
         {
-            foreach (var gameobject in gameObjects)
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
+            //here will be particle
+            gamePipeline.ChangeHealth(0);
+            Destroy(other.gameObject, 2.5f);
+        }
+
+        if (gameObjects.Count == 10)
+        {
+            while (gameObjects.Count > 0)
             {
-                Destroy(gameobject);
-                gameObjects.Remove(gameobject);
+                Destroy(gameObjects[0]);
+                gameObjects.Remove(gameObjects[0]);
             }
         }
     }
