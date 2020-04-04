@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ChoosingScript : MonoBehaviour
 {
-    EggSpown gamePipeline;
+    GamePipeline gamePipeline;
 
     // Start is called before the first frame update
     void Start()
     {
-        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>();
+        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<GamePipeline>();
     }
 
     private void Update()
@@ -19,7 +19,7 @@ public class ChoosingScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Easy") { gamePipeline.difficulty = EggSpown.Difficulty.easy; }
-        else if (other.name == "Hard") { gamePipeline.difficulty = EggSpown.Difficulty.hard; }
+        if (other.name == "Easy") { gamePipeline.Difficulty = GamePipeline.Difficulty_Type.easy; }
+        else if (other.name == "Hard") { gamePipeline.Difficulty = GamePipeline.Difficulty_Type.hard; }
     }
 }

@@ -19,11 +19,11 @@ public class GetInfo : MonoBehaviour
         {
             if (hand == Hand.left)
             {
-                GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>().RefreshHeath();
+                GameObject.FindGameObjectWithTag("player").GetComponent<PlayerLogic>().RefreshHeath();
             }
             else if (hand == Hand.right)
             {
-                GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>().RefreshHeath();
+                GameObject.FindGameObjectWithTag("player").GetComponent<PlayerLogic>().RefreshHeath();
             }
         }
         catch { }

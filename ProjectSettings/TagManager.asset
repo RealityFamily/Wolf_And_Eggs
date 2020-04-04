@@ -15,6 +15,10 @@ TagManager:
   - player
   - Countdown
   - Zayac
+  - Rift_Leap
+  - Quest
+  - Rift_Touch
+  - Difficulty
   layers:
   - Default
   - TransparentFX

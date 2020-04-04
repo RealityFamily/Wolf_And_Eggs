@@ -9,11 +9,11 @@ public class EggDestroy : MonoBehaviour
 {
     private int counter;
     private int index = 0;
-    private EggSpown gamePipeline;
+    private PlayerLogic pl;
 
     private void Start()
     {
-        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>();
+        pl = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerLogic>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,7 +23,7 @@ public class EggDestroy : MonoBehaviour
             AudioSource audio = collision.gameObject.GetComponent<AudioSource>();
             audio.Play();
             Destroy(collision.gameObject, 0.3f);
-            gamePipeline.ChangeHealth(-1);
+            pl.ChangeHealth(-1);
         }
 
         if (collision.gameObject.tag == "Bomb")

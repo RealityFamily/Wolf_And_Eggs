@@ -7,7 +7,7 @@ public class ReloadScene : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>().Reload();
+        GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<GamePipeline>().Reload();
     }
 
     private void Update()

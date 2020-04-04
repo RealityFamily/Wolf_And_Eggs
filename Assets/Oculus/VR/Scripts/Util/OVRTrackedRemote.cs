@@ -20,7 +20,7 @@ using System.Collections;
 /// <summary>
 /// Simple helper script that conditionally enables rendering of a controller if it is connected.
 /// </summary>
-public class OVRControllerHelper : MonoBehaviour
+public class OVRTrackedRemote : MonoBehaviour
 {
 	/// <summary>
 	/// The root GameObject that represents the GearVr Controller model.
@@ -51,6 +51,15 @@ public class OVRControllerHelper : MonoBehaviour
 	/// The root GameObject that represents the Oculus Touch for Rift Controller model (Right).
 	/// </summary>
 	public GameObject m_modelOculusTouchRiftRightController;
+
+	public GameObject m_modelOculusQuestHands;
+
+	public enum Quest_Type
+	{
+		None, Hands, Controller
+	}
+
+	public Quest_Type Quest_Work_Type = Quest_Type.None;
 
 	/// <summary>
 	/// The controller that determines whether or not to enable rendering of the controller model.
@@ -145,8 +154,19 @@ public class OVRControllerHelper : MonoBehaviour
 			{
 				m_modelOculusGoController.SetActive(false);
 				m_modelGearVrController.SetActive(false);
-				m_modelOculusTouchQuestAndRiftSLeftController.SetActive(controllerConnected && (m_controller == OVRInput.Controller.LTouch));
-				m_modelOculusTouchQuestAndRiftSRightController.SetActive(controllerConnected && (m_controller == OVRInput.Controller.RTouch));
+				if (controllerConnected)
+				{
+					m_modelOculusTouchQuestAndRiftSLeftController.SetActive((m_controller == OVRInput.Controller.LTouch));
+					m_modelOculusTouchQuestAndRiftSRightController.SetActive((m_controller == OVRInput.Controller.RTouch));
+					m_modelOculusQuestHands.SetActive(false);
+					Quest_Work_Type = Quest_Type.Controller;
+				} else
+				{
+					m_modelOculusQuestHands.SetActive(true);
+					m_modelOculusTouchQuestAndRiftSLeftController.SetActive(false);
+					m_modelOculusTouchQuestAndRiftSRightController.SetActive(false);
+					Quest_Work_Type = Quest_Type.Hands;
+				}
 				m_modelOculusTouchRiftLeftController.SetActive(false);
 				m_modelOculusTouchRiftRightController.SetActive(false);
 			}

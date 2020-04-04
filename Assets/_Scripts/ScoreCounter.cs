@@ -6,7 +6,7 @@ public class ScoreCounter : MonoBehaviour
     public GameObject coin;
     public AudioClip clip;
 
-    private EggSpown gamePipeline;
+    private PlayerLogic pl;
     List<GameObject> gameObjects = new List<GameObject>();
     private float yDeg;
     private Quaternion fromRotation;
@@ -15,7 +15,7 @@ public class ScoreCounter : MonoBehaviour
 
     private void Start()
     {
-        gamePipeline = GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>();
+        pl = GameObject.FindGameObjectWithTag("player").GetComponent<PlayerLogic>();
     }
 
     private void Update()
@@ -41,14 +41,14 @@ public class ScoreCounter : MonoBehaviour
             created_coin.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 2f, 0f), ForceMode.Impulse);
             Destroy(created_coin, 3);
             gameObjects.Add(other.gameObject);
-            gamePipeline.AddScore(10);
+            pl.AddScore(10);
         }
 
         if (other.gameObject.tag == "Bomb")
         {
             other.gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
             //here will be particle
-            gamePipeline.ChangeHealth(0);
+            pl.ChangeHealth(0);
             Destroy(other.gameObject, 2.5f);
         }
 
