@@ -21,17 +21,20 @@ public class Choose_Difficulty : MonoBehaviour
         player.transform.position = chooseDifficultyPlace.position;
         player.transform.rotation = chooseDifficultyPlace.rotation;
 
-        StartCoroutine(WaitForAnswer());
+        if (gamePipeline.NeedTimeCount) {
+            StartCoroutine(WaitForAnswer());
+        }
     }
 
     IEnumerator WaitForAnswer()
     {
+        
         float time = Time.time;
         yield return new WaitUntil(() => gamePipeline.Difficulty != Difficulty_Type.none || Time.time - time >= 10);
         if (gamePipeline.Difficulty == Difficulty_Type.none)
         {
             Countdown.SetActive(true);
-            Text intCountdown = GameObject.FindGameObjectWithTag("Countdown").transform.GetChild(1).GetComponent<Text>();
+            Text intCountdown = Countdown.transform.GetChild(1).GetComponent<Text>();
             for (int t = 5; t > -1; t--)
             {
                 intCountdown.text = t.ToString();
@@ -42,5 +45,6 @@ public class Choose_Difficulty : MonoBehaviour
                 gamePipeline.Difficulty = Difficulty_Type.easy;
             }
         }
+        
     }
 }

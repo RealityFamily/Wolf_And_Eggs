@@ -75,14 +75,14 @@ public class PlayerLogic : MonoBehaviour
 
             case OVRPlugin.SystemHeadset.Rift_CV1:
             case OVRPlugin.SystemHeadset.Rift_S:
-                if (gamePipeline.Difficulty == GamePipeline.Difficulty_Type.easy)
+                if (gamePipeline.Difficulty == Difficulty_Type.easy)
                 {
                     player = Touch;
                     Leap.SetActive(false);
                     Touch.SetActive(true);
                     LH = GameObject.FindGameObjectWithTag("Left Hand").GetComponent<BoxCollider>();
                     RH = GameObject.FindGameObjectWithTag("Right Hand").GetComponent<BoxCollider>();
-                } else if (gamePipeline.Difficulty == GamePipeline.Difficulty_Type.hard)
+                } else if (gamePipeline.Difficulty == Difficulty_Type.hard)
                 {
                     player = Leap;
                     Leap.SetActive(true);
@@ -95,8 +95,8 @@ public class PlayerLogic : MonoBehaviour
 
     public void putToGamePlace()
     {
-        player.transform.position = gamePlace.position;
-        player.transform.rotation = gamePlace.rotation;
+        transform.position = gamePlace.position;
+        transform.rotation = gamePlace.rotation;
     }
 
     public void AddScore(int score_to_add)  // метод добавление счета игроку

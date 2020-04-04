@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GamePipeline : MonoBehaviour
@@ -16,12 +17,17 @@ public class GamePipeline : MonoBehaviour
     [SerializeField]
     EggSpown eggSpawn;
 
+
+    [Header("For debugging:")]
+    public bool NeedTimeCount = true;
+    [SerializeField]
     Difficulty_Type difficulty = Difficulty_Type.none;
 
     // Start is called before the first frame update
     void Start()
     {
         difficulty = Difficulty_Type.none;
+        StartCoroutine(GameTimeLine());
     }
 
     // Update is called once per frame

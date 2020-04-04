@@ -225,37 +225,6 @@ Transform:
   m_Father: {fileID: 1537457701}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &72299198
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 72299199}
-  m_Layer: 0
-  m_Name: Teaching
-  m_TagString: player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &72299199
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 72299198}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2070377724}
-  m_Father: {fileID: 1427739255}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74729508
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,25 +341,6 @@ MonoBehaviour:
   playerLogic: {fileID: 1427739256}
   egg: {fileID: 1704425128787632, guid: dc628ca73aac89745a9b56fb2a0cded2, type: 3}
   bomb: {fileID: 1614954286388220, guid: 3a5844ac072f42640b3981ab66d37d19, type: 3}
-  TreaningDialog:
-  - {fileID: 8300000, guid: 607165ed974649d48ada1c77f3042984, type: 3}
-  - {fileID: 8300000, guid: 748f8ea3f1edd3f40b12c7d974e19d48, type: 3}
-  - {fileID: 8300000, guid: 292ad6a6711d0ef4b819204aeefa9b76, type: 3}
-  - {fileID: 8300000, guid: 80b3f97c445bf9d4790ea2d6491d4330, type: 3}
-  - {fileID: 8300000, guid: e9b51496bf64069488a43066aa68f5eb, type: 3}
-  - {fileID: 8300000, guid: e90deabd7053cb8438981bbf1c8643ee, type: 3}
-  - {fileID: 8300000, guid: b11ea8d3a03ad384b8a55415d78272f6, type: 3}
-  - {fileID: 8300000, guid: 41f7c3d2ca6c37c4bb094e4b878208f0, type: 3}
-  - {fileID: 8300000, guid: cc635ac18a732824ea437801214c82fd, type: 3}
-  - {fileID: 8300000, guid: a8c64d26444d77648b90ed0501954f72, type: 3}
-  TouchPart:
-  - {fileID: 8300000, guid: 3ac46cbd3562b9143919439398091eed, type: 3}
-  - {fileID: 8300000, guid: e4f75ba9130aed4458776663971efa0a, type: 3}
-  - {fileID: 8300000, guid: e9ef8c13299f1eb4897d6c63e257daef, type: 3}
-  - {fileID: 8300000, guid: 9c82597ff80ca5a47bdcdcbd3fa06b91, type: 3}
-  LeapPart:
-  - {fileID: 8300000, guid: 9a4412df2eaa1b54fb04778aa38808b4, type: 3}
-  - {fileID: 8300000, guid: 7b9880704ca731b44a350f18f4af203b, type: 3}
 --- !u!1 &86850383
 GameObject:
   m_ObjectHideFlags: 0
@@ -8241,7 +8191,7 @@ Transform:
   m_Children:
   - {fileID: 1447497036}
   - {fileID: 1815257135}
-  - {fileID: 72299199}
+  - {fileID: 2070377724}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17057,12 +17007,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 72299199}
+    m_TransformParent: {fileID: 1427739255}
     m_Modifications:
     - target: {fileID: 3572408673983107539, guid: fbd1a7af542b2fc42a1d999601abab63,
         type: 3}
       propertyPath: m_Name
-      value: OVRCameraRigQuestHands
+      value: Quest
       objectReference: {fileID: 0}
     - target: {fileID: 3572408673983107539, guid: fbd1a7af542b2fc42a1d999601abab63,
         type: 3}
@@ -17107,7 +17057,7 @@ PrefabInstance:
     - target: {fileID: 3572408673983107542, guid: fbd1a7af542b2fc42a1d999601abab63,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3572408673983107542, guid: fbd1a7af542b2fc42a1d999601abab63,
         type: 3}
