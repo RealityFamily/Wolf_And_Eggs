@@ -16,7 +16,7 @@ namespace Leap.Unity{
   public class HandEnableDisable : HandTransitionBehavior {
     protected override void Awake() {
       base.Awake();
-      gameObject.SetActive(false);
+      gameObject.SetActive(true);
     }
 
   	protected override void HandReset() {

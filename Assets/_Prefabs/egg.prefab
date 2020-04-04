@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 114337945549686734}
   - component: {fileID: 136062987452914068}
   - component: {fileID: 114066853853828324}
-  - component: {fileID: 4472940051336423462}
+  - component: {fileID: 3692897331904682086}
   m_Layer: 0
   m_Name: egg
   m_TagString: egg
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704425128787632}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f10fa40360571247a7ca806d6859557, type: 3}
   m_Name: 
@@ -236,10 +236,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: d2773c486954180488cfe30d8f4915da, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.0328829
+  m_Radius: 0.89
   m_Height: 2.4649012
   m_Direction: 2
-  m_Center: {x: 0, y: -0.032882955, z: 0.35960305}
+  m_Center: {x: 0, y: 0, z: 0.35960305}
 --- !u!114 &114066853853828324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec00bfa306c17347841ff781c91f97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4472940051336423462
+--- !u!114 &3692897331904682086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -5,25 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
-    private GameObject scoreCount;
-    private GameObject eggSpown;
-
-    private void Awake()
+    private void OnTriggerEnter(Collider other)
     {
-        scoreCount = GameObject.Find("EggTrigger");
-        eggSpown = GameObject.Find("EggSpown");
+        GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>().Reload();
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Reload");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-        }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            //eggSpown.GetComponent<EggSpown>().isPaused = true;
-        }
+    private void Update()
+    {
+
     }
 }

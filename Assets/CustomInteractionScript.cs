@@ -10,7 +10,12 @@ public class CustomInteractionScript : MonoBehaviour
 
     private void Start()
     {
-        interactionBehaviour = GetComponent<InteractionBehaviour>();
+        if (GameObject.FindGameObjectWithTag("Game Pipeline").GetComponent<EggSpown>().difficulty == EggSpown.Difficulty.hard)
+        {
+            interactionBehaviour = GetComponent<InteractionBehaviour>();
+            interactionBehaviour.manager = GameObject.FindGameObjectWithTag("player").GetComponentInChildren<InteractionManager>();
+            interactionBehaviour.enabled = true;
+        }
     }
     private void Update()
     {
