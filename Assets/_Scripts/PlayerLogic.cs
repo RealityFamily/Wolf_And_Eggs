@@ -13,9 +13,14 @@ public class PlayerLogic : MonoBehaviour
     public bool LeftLeap { get { return leftLeap; } set { leftLeap = value; } }
     public bool RightLeap { get { return rightLeap; } set { rightLeap = value; } }
 
-    OVRPlugin.SystemHeadset headset;
+
+    string headset;
+
+    [SerializeField]
     GameObject Quest;
+    [SerializeField]
     GameObject Touch;
+    [SerializeField]
     GameObject Leap;
 
     GameObject player;
@@ -45,36 +50,36 @@ public class PlayerLogic : MonoBehaviour
     {
         health = 5;
         score = 0;
-        headset = OVRPlugin.GetSystemHeadsetType();
+        headset = OVRPlugin.productName;
 
-        HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
-        ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
+   //     HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
+   //     ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
 
         switch (headset)
         {
-            case OVRPlugin.SystemHeadset.None:
-            case OVRPlugin.SystemHeadset.GearVR_R320:
-            case OVRPlugin.SystemHeadset.GearVR_R321:
-            case OVRPlugin.SystemHeadset.GearVR_R322:
+            case "":
+            case "GearVR_R320":
+            case "GearVR_R321":
+          /*  case OVRPlugin.SystemHeadset.GearVR_R322:
             case OVRPlugin.SystemHeadset.GearVR_R323:
             case OVRPlugin.SystemHeadset.GearVR_R324:
             case OVRPlugin.SystemHeadset.GearVR_R325:
             case OVRPlugin.SystemHeadset.Oculus_Go:
             case OVRPlugin.SystemHeadset.Rift_CB:
             case OVRPlugin.SystemHeadset.Rift_DK2:
-            case OVRPlugin.SystemHeadset.Rift_DK1:
+            case OVRPlugin.SystemHeadset.Rift_DK1:*/
                 Debug.Log("Unsurported HMD version");
                 break;
 
-            case OVRPlugin.SystemHeadset.Oculus_Quest:
+            case "Quest":
                 player = Quest;
                 Quest.SetActive(true);
                 Leap.SetActive(false);
                 Touch.SetActive(false);
                 break;
 
-            case OVRPlugin.SystemHeadset.Rift_CV1:
-            case OVRPlugin.SystemHeadset.Rift_S:
+            case "Rift_CV1":
+            case "Rift_S":
                 if (gamePipeline.Difficulty == Difficulty_Type.easy)
                 {
                     player = Touch;

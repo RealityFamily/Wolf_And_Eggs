@@ -21,13 +21,21 @@ public class GamePipeline : MonoBehaviour
     [Header("For debugging:")]
     public bool NeedTimeCount = true;
     [SerializeField]
+    bool MechanicsDevelopmentMode;
+    [SerializeField]
     Difficulty_Type difficulty = Difficulty_Type.none;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         difficulty = Difficulty_Type.none;
-        StartCoroutine(GameTimeLine());
+        if (!MechanicsDevelopmentMode)
+        {
+            StartCoroutine(GameTimeLine());
+        }
+        else
+            StartCoroutine(MechanicsDevelopmentGameTimeline());
     }
 
     // Update is called once per frame
@@ -52,6 +60,13 @@ public class GamePipeline : MonoBehaviour
         playerLogic.putToGamePlace();
         learning.Start_Learning();
         yield return new WaitWhile(() => learning.Ready == false);
+        eggSpawn.StartPlay();
+        yield return new WaitWhile(() => eggSpawn.Playing == true);
+        playerLogic.ShowScore();
+    }
+
+    IEnumerator MechanicsDevelopmentGameTimeline() { // TODO: Flexible development logic
+        playerLogic.putToGamePlace();
         eggSpawn.StartPlay();
         yield return new WaitWhile(() => eggSpawn.Playing == true);
         playerLogic.ShowScore();
