@@ -438,6 +438,9 @@ MonoBehaviour:
   chooseDificulty: {fileID: 331769628}
   learning: {fileID: 2141194436}
   eggSpawn: {fileID: 79011771}
+  NeedTimeCount: 1
+  MechanicsDevelopmentMode: 0
+  difficulty: 0
 --- !u!4 &112534881
 Transform:
   m_ObjectHideFlags: 0
@@ -8209,6 +8212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePipeline: {fileID: 112534880}
   eggSpawn: {fileID: 79011771}
+  Quest: {fileID: 2035249512}
+  Touch: {fileID: 1893264233}
+  Leap: {fileID: 1447497035}
   HeartAdd: {fileID: 8300000, guid: c8e1184a2ff323a419203e55adf0a1e9, type: 3}
   HeartCrush: {fileID: 8300000, guid: 11a66f41c61a08643bf93cb98fccf02d, type: 3}
   ScoreTableTeleportPlace: {fileID: 1255056827}
@@ -9373,6 +9379,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 103e00fd2f83c1241adb9ea7551727c9, type: 3}
+--- !u!1 &1893264233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293,
+    type: 3}
+  m_PrefabInstance: {fileID: 1177520932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1898175158
 GameObject:
   m_ObjectHideFlags: 0
@@ -15491,6 +15503,12 @@ Transform:
   m_Father: {fileID: 726492877}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2035249512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3572408673983107539, guid: fbd1a7af542b2fc42a1d999601abab63,
+    type: 3}
+  m_PrefabInstance: {fileID: 3572408672253306154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2035481578
 GameObject:
   m_ObjectHideFlags: 0

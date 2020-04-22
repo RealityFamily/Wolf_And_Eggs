@@ -52,7 +52,7 @@ public class PlayerLogic : MonoBehaviour
         score = 0;
         headset = OVRPlugin.productName;
 
-   //     HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
+        HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
    //     ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
 
         switch (headset)
