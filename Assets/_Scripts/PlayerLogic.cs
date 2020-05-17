@@ -180,7 +180,7 @@ public class PlayerLogic : MonoBehaviour
 
     public void ControllersOff()
     {
-        if (player == Quest && Quest.GetComponentInChildren<OVRTrackedRemote>().Quest_Work_Type == OVRTrackedRemote.Quest_Type.Controller)
+        if (player == Quest /*&& Quest.GetComponentInChildren<OVRTrackedRemote>().Quest_Work_Type == OVRTrackedRemote.Quest_Type.Controller*/)
         {
             // здесь нужна логика переключения контроллеров на руки
         } else if (player == Touch)

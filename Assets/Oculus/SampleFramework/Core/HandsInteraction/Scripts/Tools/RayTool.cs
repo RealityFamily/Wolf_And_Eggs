@@ -12,7 +12,6 @@ language governing permissions and limitations under the license.
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using static OVRHand;
 
 namespace OculusSampleFramework
 {
@@ -108,9 +107,7 @@ namespace OculusSampleFramework
 
 		private void Update()
 		{
- 
-
-            if (!HandsManager.Instance || !HandsManager.Instance.IsInitialized() || !_initialized)
+			if (!HandsManager.Instance || !HandsManager.Instance.IsInitialized() || !_initialized)
 			{
 				return;
 			}

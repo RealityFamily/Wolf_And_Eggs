@@ -79,15 +79,9 @@ public class OVRHand : MonoBehaviour,
 	private void Update()
 	{
 		GetHandState(OVRPlugin.Step.Render);
+	}
 
-
-            bool isIndexFingerPinching = GetFingerIsPinching(HandFinger.Index);
-             if(isIndexFingerPinching)
-            Debug.Log("now" + HandType + " has been pinched");
-
-    }
-
-    private void FixedUpdate()
+	private void FixedUpdate()
 	{
 		GetHandState(OVRPlugin.Step.Physics);
 	}

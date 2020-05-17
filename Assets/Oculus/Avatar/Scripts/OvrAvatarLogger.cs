@@ -1,6 +1,7 @@
 using UnityEngine;
 
-
+namespace Oculus.Avatar
+{
     public static class AvatarLogger
     {
         public const string LogAvatar = "[Avatars] - ";
@@ -41,4 +42,4 @@ using UnityEngine;
             Debug.LogError(LogAvatar + logMsg, context);
         }
     };
-
+}
