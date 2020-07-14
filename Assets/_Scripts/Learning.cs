@@ -126,7 +126,7 @@ public class Learning : MonoBehaviour
             i++;
         }
         else { playerLogic.ControllersOff(); }
-        ready = true;
+        gamePipeline.eggSpawn.StartPlay();
     }
 
     private float ZayacTalk(int i, Difficulty_Type GameDifficulty) // скрипт, чтобы не писать каждый отдельный взятый раз болтовню зайца. В массивах аудиозаписи должны лежать попорядку
@@ -146,5 +146,10 @@ public class Learning : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(TreaningDialog[i]);
             return TreaningDialog[i].length;
         }
+    }
+
+    public void ShutUp()
+    {
+        GetComponent<AudioSource>().Stop();
     }
 }

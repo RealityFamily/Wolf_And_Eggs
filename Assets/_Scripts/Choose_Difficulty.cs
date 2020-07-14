@@ -16,6 +16,9 @@ public class Choose_Difficulty : MonoBehaviour
 
     public void PutToChoose()
     {
+        gamePipeline.Difficulty = Difficulty_Type.none;
+        Countdown.SetActive(false);
+
         player = GameObject.FindGameObjectWithTag("player");
 
         player.transform.position = chooseDifficultyPlace.position;
@@ -43,6 +46,7 @@ public class Choose_Difficulty : MonoBehaviour
             if (gamePipeline.Difficulty == Difficulty_Type.none)
             {
                 gamePipeline.Difficulty = Difficulty_Type.easy;
+                gamePipeline.playerLogic.putToGamePlace();
             }
         }
         

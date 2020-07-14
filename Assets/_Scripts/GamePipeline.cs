@@ -8,20 +8,15 @@ public class GamePipeline : MonoBehaviour
     public enum Difficulty_Type { none, easy, hard }
     public Difficulty_Type Difficulty { get { return difficulty; } set { difficulty = value; } }
 
-    [SerializeField]
-    PlayerLogic playerLogic;
-    [SerializeField]
-    Choose_Difficulty chooseDificulty;
-    [SerializeField]
-    Learning learning;
-    [SerializeField]
-    EggSpown eggSpawn;
+    public PlayerLogic playerLogic;
+    public Choose_Difficulty chooseDificulty;
+    public Learning learning;
+    public EggSpown eggSpawn;
 
 
     [Header("For debugging:")]
     public bool NeedTimeCount = true;
-    [SerializeField]
-    bool MechanicsDevelopmentMode;
+    public bool WithoutLearning = false;
     [SerializeField]
     Difficulty_Type difficulty = Difficulty_Type.none;
     
@@ -30,12 +25,34 @@ public class GamePipeline : MonoBehaviour
     void Start()
     {
         difficulty = Difficulty_Type.none;
-        if (!MechanicsDevelopmentMode)
-        {
-            StartCoroutine(GameTimeLine());
-        }
-        else
-            StartCoroutine(MechanicsDevelopmentGameTimeline());
+        chooseDificulty.PutToChoose();
+
+        #region StateControl Logic
+        WebConnection webConnection = GameObject.FindGameObjectWithTag("States").GetComponent<WebConnection>();
+        webConnection.ConnectToDelegate("Reload", () => {
+            StopAllCoroutines();
+            chooseDificulty.PutToChoose(); 
+        });
+        webConnection.ConnectToDelegate("\"Controlers\" mode", () => {
+            StopAllCoroutines();
+            difficulty = Difficulty_Type.easy;
+            playerLogic.putToGamePlace();
+        });
+        webConnection.ConnectToDelegate("\"Hand\" mode", () => {
+            StopAllCoroutines();
+            difficulty = Difficulty_Type.hard;
+            playerLogic.putToGamePlace();
+        });
+        webConnection.ConnectToDelegate("Game Start", () => {
+            StopAllCoroutines();
+            eggSpawn.StartPlay();
+        });
+        webConnection.ConnectToDelegate("Game End", () => {
+            StopAllCoroutines();
+            playerLogic.ShowScore();
+        });
+        #endregion
+
     }
 
     // Update is called once per frame
@@ -43,32 +60,16 @@ public class GamePipeline : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Reload();
+            chooseDificulty.PutToChoose();
         }
     }
 
-    public void Reload()
+    public new void StopAllCoroutines()
     {
-        StopCoroutine(GameTimeLine());
-        StartCoroutine(GameTimeLine());
-    }
-
-    IEnumerator GameTimeLine()
-    {
-        chooseDificulty.PutToChoose();
-        yield return new WaitWhile(() => difficulty == Difficulty_Type.none);
-        playerLogic.putToGamePlace();
-        learning.Start_Learning();
-        yield return new WaitWhile(() => learning.Ready == false);
-        eggSpawn.StartPlay();
-        yield return new WaitWhile(() => eggSpawn.Playing == true);
-        playerLogic.ShowScore();
-    }
-
-    IEnumerator MechanicsDevelopmentGameTimeline() { // TODO: Flexible development logic
-        playerLogic.putToGamePlace();
-        eggSpawn.StartPlay();
-        yield return new WaitWhile(() => eggSpawn.Playing == true);
-        playerLogic.ShowScore();
+        playerLogic.StopAllCoroutines();
+        chooseDificulty.StopAllCoroutines();
+        eggSpawn.StopAllCoroutines();
+        learning.ShutUp();
+        learning.StopAllCoroutines();
     }
 }

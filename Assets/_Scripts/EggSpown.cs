@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class EggSpown : MonoBehaviour
 {
     public GamePipeline gamePipeline;
-    public PlayerLogic playerLogic;
 
     GameObject spawnPoint1;
     GameObject spawnPoint2;
@@ -35,6 +34,10 @@ public class EggSpown : MonoBehaviour
         spawnPoint1 = transform.GetChild(0).gameObject;
         spawnPoint2 = transform.GetChild(1).gameObject;
         spawnPoint3 = transform.GetChild(2).gameObject;
+
+        chicken1 = GameObject.Find("ChickenBrown1");
+        chicken2 = GameObject.Find("ChickenBrown2");
+        chicken3 = GameObject.Find("ChickenBrown3");
     }
 
     public void StartPlay()
@@ -45,32 +48,32 @@ public class EggSpown : MonoBehaviour
     IEnumerator GameTimeLine ()
     {
         // востановление значений жизней и счета после обучения
-        playerLogic.Score = 0;
-        playerLogic.Health = 5;
-        playerLogic.ReloadWatchValues();
+        gamePipeline.playerLogic.Score = 0;
+        gamePipeline.playerLogic.Health = 5;
+        gamePipeline.playerLogic.ReloadWatchValues();
         playing = true;
 
         while (playing)
         {
             Spawn();
-            if (playerLogic.Score >= 100) // каждые 10 яиц => ускорение времени их появления, или по-другому "новый уровень"
+            if (gamePipeline.playerLogic.Score >= 100) // каждые 10 яиц => ускорение времени их появления, или по-другому "новый уровень"
             {
                 round += 1;
-                playerLogic.Score -= 100;
+                gamePipeline.playerLogic.Score -= 100;
                 if (!comboFail) // если игрок не уронил ни одного яйца за раунд или другими словами собрал комбо из 10 яиц, то его жизнь++
                 {
-                    playerLogic.ChangeHealth(1);
+                    gamePipeline.playerLogic.ChangeHealth(1);
                 }
                 comboFail = false;
             }
-            playing = playerLogic.Health > 0 && round < 10;
+            playing = gamePipeline.playerLogic.Health > 0 && round < 10;
             yield return new WaitForSeconds(GiveTime());
         }
 
         /********************************************************************/
         /* демонстрация счета (пока под вопросом) и кнопка перезапуска игры */
         /********************************************************************/
-        playerLogic.ShowScore();
+        gamePipeline.playerLogic.ShowScore();
 
         //yield return null; //заглушка для проверки
     }    

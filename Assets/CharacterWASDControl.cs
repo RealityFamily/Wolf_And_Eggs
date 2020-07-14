@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterWASDControl : MonoBehaviour
 {
-
+    [SerializeField]
     private float speed = 2.0f;
 
     // Start is called before the first frame update
@@ -19,19 +19,19 @@ public class CharacterWASDControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.parent.position += transform.right * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * speed * Time.deltaTime;
+            transform.parent.position += -transform.right * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position += Vector3.forward * speed * Time.deltaTime;
+            transform.parent.position += transform.forward * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += Vector3.back * speed * Time.deltaTime;
+            transform.parent.position += -transform.forward * speed * Time.deltaTime;
         }
     }
 }

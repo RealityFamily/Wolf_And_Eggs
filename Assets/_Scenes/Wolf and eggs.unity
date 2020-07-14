@@ -262,7 +262,7 @@ MonoBehaviour:
   learning: {fileID: 2141194436}
   eggSpawn: {fileID: 79011771}
   NeedTimeCount: 1
-  MechanicsDevelopmentMode: 0
+  MechanicsDevelopmentMode: 1
   difficulty: 0
 --- !u!4 &112534881
 Transform:
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 140005360}
   - component: {fileID: 140005363}
   m_Layer: 0
-  m_Name: ChickenBrown
+  m_Name: ChickenBrown2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,115 +554,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216860660}
   m_CullTransparentMesh: 0
---- !u!1 &272187718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046132402}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 272187721}
-  - component: {fileID: 272187720}
-  - component: {fileID: 272187719}
-  m_Layer: 0
-  m_Name: ControllersOff
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &272187719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 11441414, guid: 84c8b8609f9bb434eaf5248f17ff1293,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046132402}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272187718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac27124318cf8e84aa7350c2ac1cdb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mode: 0
---- !u!114 &272187720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 11437430, guid: 84c8b8609f9bb434eaf5248f17ff1293,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046132402}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272187718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f3402a2ea5bff4880c0313515240cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oculusUserID: 0
-  Driver: {fileID: 272187719}
-  EnableBody: 1
-  EnableHands: 1
-  EnableBase: 0
-  EnableExpressive: 1
-  RecordPackets: 1
-  UseSDKPackets: 1
-  PacketSettings:
-    UpdateRate: 0.033333335
-  StartWithControllers: 0
-  FirstPersonLayer:
-    layerIndex: 0
-  ThirdPersonLayer:
-    layerIndex: 0
-  ShowFirstPerson: 1
-  ShowThirdPerson: 0
-  LevelOfDetail: 5
-  UseTransparentRenderQueue: 1
-  Monochrome_SurfaceShader: {fileID: 4800000, guid: 73f67c4e7bf718b4385aa6b1f8a06591,
-    type: 3}
-  Monochrome_SurfaceShader_SelfOccluding: {fileID: 4800000, guid: 69f342b79d37541489919a19cfd8a924,
-    type: 3}
-  Monochrome_SurfaceShader_PBS: {fileID: 4800000, guid: 5e52aa58207bbf24d8eb8ec969e9ae88,
-    type: 3}
-  Skinshaded_SurfaceShader_SingleComponent: {fileID: 4800000, guid: 36b8b481cf607814a8cec318f0148d63,
-    type: 3}
-  Skinshaded_VertFrag_SingleComponent: {fileID: 4800000, guid: c26fc51e445dcfd4db09305d861dc11c,
-    type: 3}
-  Skinshaded_VertFrag_CombinedMesh: {fileID: 4800000, guid: 37d2b8298f61cd2469465fc36108675d,
-    type: 3}
-  Skinshaded_Expressive_SurfaceShader_SingleComponent: {fileID: 4800000, guid: 93b478e926e46654889c1c20f87f253f,
-    type: 3}
-  Skinshaded_Expressive_VertFrag_SingleComponent: {fileID: 4800000, guid: 2fe0ac0c2373ab143a6f21314b785d7d,
-    type: 3}
-  Skinshaded_Expressive_VertFrag_CombinedMesh: {fileID: 4800000, guid: 0600fe59b0c043344affd1d1368b9ef2,
-    type: 3}
-  Loader_VertFrag_CombinedMesh: {fileID: 4800000, guid: 822f5e641dc5dd54ca9555b727b3277f,
-    type: 3}
-  EyeLens: {fileID: 4800000, guid: 8392f54e79937ed4bb1b692a143dc02b, type: 3}
-  ControllerShader: {fileID: 4800000, guid: 28729c6ae5a33b04cb2f7956f3f3fc01, type: 3}
-  CanOwnMicrophone: 1
-  EnableLaughter: 1
-  MouthAnchor: {fileID: 0}
-  LeftHandCustomPose: {fileID: 0}
-  RightHandCustomPose: {fileID: 0}
-  VoiceAmplitude: 0
-  EnableMouthVertexAnimation: 0
---- !u!4 &272187721
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293,
-    type: 3}
-  m_PrefabInstance: {fileID: 2046132402}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272187718}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322365008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1118,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907058334}
   m_CullTransparentMesh: 0
+--- !u!1 &912865410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 912865412}
+  - component: {fileID: 912865411}
+  m_Layer: 0
+  m_Name: States
+  m_TagString: States
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &912865411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912865410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3f08e7745bfad4ebff3b1c618b6207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeviceSession: 
+  GameName: "\u042F\u0439\u0446\u0435\u043B\u043E\u0432"
+  BaseURL: state-control.herokuapp.com/
+  Keys:
+  - "\u0412\u044B\u0431\u043E\u0440 \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0438"
+  - "\u0420\u0435\u0436\u0438\u043C \u0438\u0433\u0440\u044B \"\u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440\u044B\""
+  - "\u0420\u0435\u0436\u0438\u043C \u0438\u0433\u0440\u044B \"\u0440\u0443\u043A\u0438\""
+  - "\u041D\u0430\u0447\u0430\u043B\u043E \u0438\u0433\u0440\u044B"
+  - "\u0417\u0430\u043A\u043E\u043D\u0447\u0438\u0442\u044C \u0438\u0433\u0440\u0443"
+--- !u!4 &912865412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912865410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &954060713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6179,7 +6122,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111671634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 1.25
   m_Height: 8
@@ -6209,7 +6152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113770307}
   m_LocalRotation: {x: 0.0125898905, y: 0.95524436, z: -0.01810037, w: 0.29499513}
-  m_LocalPosition: {x: -2.87, y: 4.97, z: 4.61}
+  m_LocalPosition: {x: -4.44, y: 3.9, z: 7.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 331769627}
@@ -6300,7 +6243,7 @@ GameObject:
   - component: {fileID: 1128637162}
   - component: {fileID: 1128637161}
   m_Layer: 0
-  m_Name: ChickenBrown (1)
+  m_Name: ChickenBrown3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6897,7 +6840,7 @@ GameObject:
   - component: {fileID: 1652562764}
   - component: {fileID: 1652562767}
   m_Layer: 0
-  m_Name: ChickenBrown (2)
+  m_Name: ChickenBrown1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13209,6 +13152,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3.2
       objectReference: {fileID: 0}
+    - target: {fileID: 744842256163140837, guid: 451106bb583c00744b1af5a46ecfc15e,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 744842256163140837, guid: 451106bb583c00744b1af5a46ecfc15e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 744842256163140837, guid: 451106bb583c00744b1af5a46ecfc15e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 744842256252784067, guid: 451106bb583c00744b1af5a46ecfc15e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -13503,5 +13461,15 @@ PrefabInstance:
       propertyPath: gamePlace
       value: 
       objectReference: {fileID: 808859850}
+    - target: {fileID: 2069766407681785548, guid: 1b6d91d61eb58a04d8427f3ff7909e35,
+        type: 3}
+      propertyPath: Debug_Obj
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069766407966215554, guid: 1b6d91d61eb58a04d8427f3ff7909e35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b6d91d61eb58a04d8427f3ff7909e35, type: 3}

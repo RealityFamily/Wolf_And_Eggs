@@ -7,7 +7,6 @@ using static GamePipeline;
 public class PlayerLogic : MonoBehaviour
 {
     public GamePipeline gamePipeline;
-    public EggSpown eggSpawn;
     public int Score { get { return score; } set { score = value; } }
     public int Health { get { return health; } set { health = value; } }
     public bool LeftLeap { get { return leftLeap; } set { leftLeap = value; } }
@@ -52,11 +51,12 @@ public class PlayerLogic : MonoBehaviour
         score = 0;
         headset = OVRPlugin.productName;
 
-        HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
-   //     ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
+        //HealthWatch = GameObject.FindGameObjectWithTag("Life Watch").GetComponentInChildren<Text>();
+        //ScoreWatch = GameObject.FindGameObjectWithTag("Score Watch").GetComponentInChildren<Text>();
 
         switch (headset)
         {
+            case null:
             case "":
             case "GearVR_R320":
             case "GearVR_R321":
@@ -72,6 +72,7 @@ public class PlayerLogic : MonoBehaviour
                 break;
 
             case "Quest":
+                Debug.Log("[Player Logic] QuestMode On");
                 player = Quest;
                 Quest.SetActive(true);
                 Leap.SetActive(false);
@@ -80,6 +81,7 @@ public class PlayerLogic : MonoBehaviour
 
             case "Rift_CV1":
             case "Rift_S":
+                Debug.Log("[Player Logic] RiftMode On");
                 if (gamePipeline.Difficulty == Difficulty_Type.easy)
                 {
                     player = Touch;
@@ -102,6 +104,13 @@ public class PlayerLogic : MonoBehaviour
     {
         transform.position = gamePlace.position;
         transform.rotation = gamePlace.rotation;
+        if (!gamePipeline.WithoutLearning)
+        {
+            gamePipeline.learning.Start_Learning();
+        } else
+        {
+            gamePipeline.eggSpawn.StartPlay();
+        }
     }
 
     public void AddScore(int score_to_add)  // метод добавление счета игроку
@@ -109,7 +118,7 @@ public class PlayerLogic : MonoBehaviour
         score += score_to_add;
         try
         {
-            ScoreWatch.text = (score + eggSpawn.Round * 100).ToString(); // счет идет за каждый раунд свой, + 100 за каждый раунд
+            ScoreWatch.text = (score + gamePipeline.eggSpawn.Round * 100).ToString(); // счет идет за каждый раунд свой, + 100 за каждый раунд
         }
         catch { }
     }
@@ -125,7 +134,7 @@ public class PlayerLogic : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Life Watch").GetComponent<AudioSource>().PlayOneShot(delta > 0 ? HeartAdd : HeartCrush);
             }
             catch { }
-            if (delta < 0) { eggSpawn.ComboFail = true; }
+            if (delta < 0) { gamePipeline.eggSpawn.ComboFail = true; }
         }
         HealthWatch.text = Health.ToString();
     }
@@ -162,8 +171,10 @@ public class PlayerLogic : MonoBehaviour
 
     public void ReloadWatchValues()
     {
-        HealthWatch.text = Health.ToString();
-        ScoreWatch.text = score.ToString();
+        if (HealthWatch != null && ScoreWatch != null) {
+            HealthWatch.text = Health.ToString();
+            ScoreWatch.text = score.ToString();
+        }
     }
 
     public void LeapCheck(string hand)  // Метод для вызова при сжатии рук с Leap
