@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePipeline: {fileID: 112534880}
-  playerLogic: {fileID: 1427739256}
   egg: {fileID: 1704425128787632, guid: dc628ca73aac89745a9b56fb2a0cded2, type: 3}
   bomb: {fileID: 1614954286388220, guid: 3a5844ac072f42640b3981ab66d37d19, type: 3}
 --- !u!1 &112534879
@@ -262,7 +261,7 @@ MonoBehaviour:
   learning: {fileID: 2141194436}
   eggSpawn: {fileID: 79011771}
   NeedTimeCount: 1
-  MechanicsDevelopmentMode: 1
+  WithoutLearning: 0
   difficulty: 0
 --- !u!4 &112534881
 Transform:
@@ -1148,14 +1147,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeviceSession: 
-  GameName: "\u042F\u0439\u0446\u0435\u043B\u043E\u0432"
-  BaseURL: state-control.herokuapp.com/
+  GameName: Wolf and Eggs
+  BaseURL: 192.168.1.70:8080/
   Keys:
-  - "\u0412\u044B\u0431\u043E\u0440 \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0438"
-  - "\u0420\u0435\u0436\u0438\u043C \u0438\u0433\u0440\u044B \"\u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440\u044B\""
-  - "\u0420\u0435\u0436\u0438\u043C \u0438\u0433\u0440\u044B \"\u0440\u0443\u043A\u0438\""
-  - "\u041D\u0430\u0447\u0430\u043B\u043E \u0438\u0433\u0440\u044B"
-  - "\u0417\u0430\u043A\u043E\u043D\u0447\u0438\u0442\u044C \u0438\u0433\u0440\u0443"
+  - Reload
+  - '"Controlers" mode'
+  - '"Hand" mode'
+  - Game Start
+  - Game End
 --- !u!4 &912865412
 Transform:
   m_ObjectHideFlags: 0
